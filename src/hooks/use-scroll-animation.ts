@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useLayoutEffect } from 'react';
 
 interface ScrollAnimationOptions {
   threshold?: number;
@@ -44,23 +44,17 @@ export const useStaggeredScrollAnimation = (
   );
   const hasTriggered = useRef(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => { // Using useLayoutEffect to prevent initial flicker
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasTriggered.current) {
           hasTriggered.current = true;
-          // Stagger the animation of items
-          for (let index = 0; index < itemCount; index++) {
-            setTimeout(() => {
-              setVisibleItems(prev => {
-                const newState = [...prev];
-                newState[index] = true;
-                return newState;
-              });
-            }, index * 150);
-          }
+          // Trigger a single state change to make all items visible
+          // The staggering is now handled by CSS transition-delay
+          setVisibleItems(new Array(itemCount).fill(true));
         } else if (!entry.isIntersecting) {
           hasTriggered.current = false;
+          // Set all items to hidden when out of view
           setVisibleItems(new Array(itemCount).fill(false));
         }
       },

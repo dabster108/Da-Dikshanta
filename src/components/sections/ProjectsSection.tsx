@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, Brain, Heart, Users, Code } from "lucide-react";
 import { useStaggeredScrollAnimation } from "@/hooks/use-scroll-animation";
+import { useState, useEffect } from "react";
 
 const ProjectsSection = () => {
   const projects = [
@@ -56,6 +57,13 @@ const ProjectsSection = () => {
   ];
 
   const { containerRef, visibleItems } = useStaggeredScrollAnimation(projects.length);
+  const [hasAnimated, setHasAnimated] = useState(Array(projects.length).fill(false));
+
+  useEffect(() => {
+    setHasAnimated((prev) =>
+      prev.map((animated, index) => animated || visibleItems[index])
+    );
+  }, [visibleItems]);
 
   return (
     <section id="projects" className="py-20 bg-accent/20 relative overflow-hidden">
@@ -90,39 +98,39 @@ const ProjectsSection = () => {
               <div
                 key={project.id}
                 className={`group relative transition-all duration-700 transform ${
-                  visibleItems[index]
+                  hasAnimated[index]
                     ? 'opacity-100 translate-y-0'
                     : 'opacity-0 translate-y-8'
                 }`}
                 style={{
-                  transitionDelay: visibleItems[index] ? `${index * 150}ms` : '0ms'
+                  transitionDelay: hasAnimated[index] ? `${index * 150}ms` : '0ms'
                 }}
               >
-                <Card className={`relative overflow-hidden hover:shadow-2xl transition-all duration-500 border-2 hover:border-primary/50 transform bg-card/90 backdrop-blur-sm hover:-translate-y-2 ${
-                  project.featured ? 'ring-2 ring-primary/30 shadow-lg shadow-primary/20' : ''
-                } min-h-[420px]`}>
-                  {/* Unified Animated Glow Border for ALL Cards - Placed INSIDE the card and clipped */}
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-purple-500 to-primary rounded-[inherit] opacity-0 group-hover:opacity-75 transition-all duration-700 blur animate-pulse group-hover:animate-none" />
-                  <div className="absolute -inset-0.5 bg-gradient-to-l from-blue-500 via-primary to-purple-600 rounded-[inherit] opacity-0 group-hover:opacity-50 transition-all duration-500 blur-md" />
+                {/* Unified Animated Glow Border for ALL Cards - Placed OUTSIDE the card */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-purple-500 to-primary rounded-xl opacity-0 group-hover:opacity-75 transition-all duration-700 blur-sm" />
+                <div className="absolute -inset-0.5 bg-gradient-to-l from-blue-500 via-primary to-purple-600 rounded-xl opacity-0 group-hover:opacity-50 transition-all duration-500 blur-md" />
 
+                <Card className={`relative overflow-hidden border-2 transform bg-card/90 backdrop-blur-sm ${
+                  project.featured ? 'ring-2 ring-primary/30 border-primary/50 shadow-lg shadow-primary/20' : 'border-border'
+                } h-full`}>
                   {/* All Card Content goes here */}
                   <div className="relative z-10 flex flex-col h-full">
                     <div className="relative overflow-hidden rounded-t-lg h-32">
                       <img
                         src={project.image}
                         alt={project.title}
-                        className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
+                        className="w-full h-full object-cover object-center"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                       
                       {/* Project Icon Overlay */}
-                      <div className="absolute top-4 right-4 p-2 bg-white/90 dark:bg-black/90 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-110">
+                      <div className="absolute top-4 right-4 p-2 bg-white/90 dark:bg-black/90 rounded-full">
                         {project.icon}
                       </div>
                     </div>
                     
                     <CardHeader className="pb-4">
-                      <CardTitle className="font-heading text-xl font-semibold group-hover:text-primary transition-colors duration-300 flex items-center gap-2">
+                      <CardTitle className="font-heading text-xl font-semibold flex items-center gap-2">
                         {project.title}
                         {project.featured && (
                           <Badge className="bg-gradient-to-r from-primary to-primary-glow text-white border-0 text-xs animate-pulse">
@@ -137,14 +145,14 @@ const ProjectsSection = () => {
                     
                     <CardContent className="mt-auto">
                       {/* Enhanced Tech Stack Section */}
-                      <div className="bg-muted/30 p-4 rounded-lg border border-primary/10 mb-6 group-hover:bg-primary/5 transition-colors duration-300">
+                      <div className="bg-muted/30 p-4 rounded-lg border border-primary/10 mb-6">
                         <h4 className="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-wider">Tech Stack</h4>
                         <div className="flex flex-wrap gap-2">
                           {project.technologies.map((tech) => (
                             <Badge 
                               key={tech} 
                               variant="secondary" 
-                              className="text-xs bg-primary/10 hover:bg-primary hover:text-primary-foreground transition-all duration-200 group-hover:scale-105 font-medium border border-primary/20"
+                              className="text-xs bg-primary/10 font-medium border border-primary/20"
                             >
                               {tech}
                             </Badge>
@@ -156,10 +164,10 @@ const ProjectsSection = () => {
                         <Button 
                           variant="outline" 
                           size="sm" 
-                          className="flex items-center gap-2 hover:bg-primary hover:text-primary-foreground transition-all duration-300 group/btn border-primary/20 hover:shadow-lg"
+                          className="flex items-center gap-2 border-border"
                           onClick={() => window.open(project.githubUrl, '_blank')}
                         >
-                          <Github className="w-4 h-4 group-hover/btn:rotate-12 transition-transform duration-300" />
+                          <Github className="w-4 h-4" />
                           View Code
                         </Button>
                       </div>
@@ -174,11 +182,11 @@ const ProjectsSection = () => {
             <Button 
               variant="outline" 
               size="lg" 
-              className="group hover:bg-primary hover:text-primary-foreground transition-all duration-300 border-primary/20"
+              className="border-border"
               onClick={() => window.open('https://github.com/dabster108', '_blank')}
             >
               View All Projects on GitHub
-              <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+              <ExternalLink className="w-4 h-4 ml-2" />
             </Button>
           </div>
         </div>
