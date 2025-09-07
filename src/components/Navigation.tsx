@@ -49,26 +49,44 @@ const Navigation = () => {
             onClick={() => scrollToSection("hero")}
             className="font-heading text-2xl font-bold bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent hover:scale-105 transition-spring"
           >
-            Alex Morgan
+            Dikshanta Chapagain
           </button>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-8 ml-auto mr-4">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-muted-foreground hover:text-foreground transition-smooth relative group"
+                className="text-muted-foreground hover:text-foreground transition-smooth relative group hover:scale-105"
               >
                 {item.label}
-                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary to-primary-glow scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
               </button>
             ))}
+          </div>
+
+          {/* Profile Icon & Theme Toggle */}
+          <div className="hidden md:flex items-center space-x-3">
             <ThemeToggle />
+            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20 hover:border-primary/50 transition-colors duration-300 hover:scale-110 transform mt-1">
+              <img
+                src="/images/person.jpeg"
+                alt="Dikshanta Chapagain"
+                className="w-full h-full object-cover object-top"
+              />
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-2">
+            <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-primary/20 mt-1">
+              <img
+                src="/images/person.jpeg"
+                alt="Dikshanta Chapagain"
+                className="w-full h-full object-cover object-top"
+              />
+            </div>
             <ThemeToggle />
             <Button
               variant="ghost"
@@ -82,13 +100,14 @@ const Navigation = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 animate-fade-in">
+          <div className="md:hidden mt-4 pb-4 animate-slide-up">
             <div className="flex flex-col space-y-4">
-              {navItems.map((item) => (
+              {navItems.map((item, index) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="text-left text-muted-foreground hover:text-foreground transition-smooth py-2"
+                  className="text-left text-muted-foreground hover:text-foreground transition-smooth py-2 hover:scale-105 animate-slide-in-left"
+                  style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   {item.label}
                 </button>

@@ -1,51 +1,78 @@
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Github } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ExternalLink, Github, Brain, Heart, Users, Code } from "lucide-react";
+import { useStaggeredScrollAnimation } from "@/hooks/use-scroll-animation";
 
 const ProjectsSection = () => {
   const projects = [
     {
-      title: "E-Commerce Platform",
-      description: "A full-stack e-commerce solution with real-time inventory management, payment processing, and admin dashboard. Built with modern technologies for optimal performance.",
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
-      technologies: ["React", "Node.js", "PostgreSQL", "Stripe", "AWS"],
-      liveUrl: "#",
-      githubUrl: "#",
+      id: 1,
+      title: "Daktar Saab",
+      description: "An AI-powered mobile healthcare application built with Kotlin and Firebase. It helps patients manage their health efficiently with features like AI symptom checking, X-ray analysis, appointment booking, and hospital navigation. From mental health resources to medication reminders, Daktar Saab is your personal digital health assistant.",
+      technologies: ["Kotlin", "Firebase", "AI/ML", "Mobile Development", "Healthcare"],
+      githubUrl: "https://github.com/dabster108/DaktarSaab",
+      image: "/images/daktarsaab.jpg",
+      icon: <Heart className="w-5 h-5" />,
       featured: true
     },
     {
-      title: "Task Management App",
-      description: "A collaborative project management tool with real-time updates, team collaboration features, and comprehensive analytics dashboard.",
-      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop",
-      technologies: ["Vue.js", "Express", "MongoDB", "Socket.io", "Docker"],
-      liveUrl: "#",
-      githubUrl: "#",
+      id: 2,
+      title: "Tuberculosis X-ray Prediction",
+      description: "A deep learning project to detect Tuberculosis (TB) from chest X-ray images using a Convolutional Neural Network (CNN) built with PyTorch. Includes a FastAPI REST API and a simple HTML/CSS/JS frontend for uploading X-ray images and displaying real-time predictions with high accuracy.",
+      technologies: ["PyTorch", "CNN", "FastAPI", "Deep Learning", "Medical AI"],
+      githubUrl: "https://github.com/dabster108/Tuberculosis-X-ray-Prediction",
+      image: "/images/daktarsaab.jpg",
+      icon: <Brain className="w-5 h-5" />,
       featured: true
     },
     {
-      title: "Weather Dashboard",
-      description: "A beautiful weather application with location-based forecasts, interactive maps, and weather alerts. Features responsive design and offline support.",
-      image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=600&h=400&fit=crop",
-      technologies: ["React", "TypeScript", "Tailwind", "OpenWeather API"],
-      liveUrl: "#",
-      githubUrl: "#",
-      featured: false
+      id: 3,
+      title: "FuturePath Finder",
+      description: "A career recommendation system that uses a Random Forest Classifier to analyze student data and suggest potential career paths. Features data cleaning & preprocessing, feature importance analysis, and FastAPI-based web interface for seamless interaction.",
+      technologies: ["Python", "Random Forest", "FastAPI", "Machine Learning", "Data Science"],
+      githubUrl: "https://github.com/dabster108/FuturePathFinder",
+      image: "/images/daktarsaab.jpg",
+      icon: <Users className="w-5 h-5" />
     },
     {
-      title: "Fitness Tracker",
-      description: "A comprehensive fitness tracking application with workout plans, progress tracking, and social features. Includes mobile app and web dashboard.",
-      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
-      technologies: ["React Native", "Python", "Django", "PostgreSQL"],
-      liveUrl: "#",
-      githubUrl: "#",
-      featured: false
+      id: 4,
+      title: "Keywi Marketers",
+      description: "A professional website developed with my friend Pratik Joshi for Keywi Marketers, a digital advertising company. Built using JavaScript, Node.js, and Tailwind CSS, focusing on performance, responsiveness, and a clean UI/UX design.",
+      technologies: ["JavaScript", "Node.js", "Tailwind CSS", "Web Development", "UI/UX"],
+      githubUrl: "https://github.com/dabster108/KEYWI-MARKETERS",
+      image: "/images/daktarsaab.jpg",
+      icon: <ExternalLink className="w-5 h-5" />
+    },
+    {
+      id: 5,
+      title: "Code Sika",
+      description: "A software development project built with Gradle, showcasing structured source code aimed at solving specific programming tasks and larger applications. Demonstrates clean architecture and modern development practices.",
+      technologies: ["Java", "Gradle", "Software Engineering", "Clean Code", "Architecture"],
+      githubUrl: "https://github.com/dabster108/CodeSika",
+      image: "/images/daktarsaab.jpg",
+      icon: <Code className="w-5 h-5" />
     }
   ];
 
+  const { containerRef, visibleItems } = useStaggeredScrollAnimation(projects.length);
+
   return (
-    <section id="projects" className="py-20 bg-accent/20">
-      <div className="container mx-auto px-6">
+    <section id="projects" className="py-20 bg-accent/20 relative overflow-hidden">
+      {/* Background Decorative Icons */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-10 right-10 w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center animate-float">
+          <img src="/favicon.ico" alt="" className="w-6 h-6 opacity-20" />
+        </div>
+        <div className="absolute bottom-20 left-20 w-16 h-16 rounded-full bg-primary-glow/10 flex items-center justify-center animate-float" style={{ animationDelay: "1.5s" }}>
+          <img src="/favicon.ico" alt="" className="w-8 h-8 opacity-15" />
+        </div>
+        <div className="absolute top-1/2 right-1/4 w-10 h-10 rounded-full bg-primary/8 flex items-center justify-center animate-float" style={{ animationDelay: "2.5s" }}>
+          <img src="/favicon.ico" alt="" className="w-5 h-5 opacity-25" />
+        </div>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
@@ -53,84 +80,105 @@ const ProjectsSection = () => {
               Featured <span className="bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">Projects</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              A showcase of my recent work and passion projects
+              Here are some of my recent projects that showcase my skills in AI/ML, web development, 
+              mobile development, and problem-solving.
             </p>
           </div>
 
-          {/* Projects Grid */}
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
-              <Card 
-                key={project.title}
-                className={`overflow-hidden card-shadow transition-smooth hover:card-shadow-hover group ${
-                  project.featured ? 'lg:col-span-2' : ''
+              <div
+                key={project.id}
+                className={`group relative transition-all duration-700 transform ${
+                  visibleItems[index]
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-8'
                 }`}
-                style={{ animationDelay: `${index * 0.1}s` }}
+                style={{
+                  transitionDelay: visibleItems[index] ? `${index * 150}ms` : '0ms'
+                }}
               >
-                {/* Project Image */}
-                <div className="relative overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-48 lg:h-64 object-cover transition-smooth group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-smooth" />
-                  
-                  {/* Action Buttons */}
-                  <div className="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-smooth">
-                    <Button size="sm" variant="secondary" className="backdrop-blur-sm">
-                      <ExternalLink className="h-4 w-4" />
-                    </Button>
-                    <Button size="sm" variant="secondary" className="backdrop-blur-sm">
-                      <Github className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
+                <Card className={`relative overflow-hidden hover:shadow-2xl transition-all duration-500 border-2 hover:border-primary/50 transform bg-card/90 backdrop-blur-sm hover:-translate-y-2 ${
+                  project.featured ? 'ring-2 ring-primary/30 shadow-lg shadow-primary/20' : ''
+                } min-h-[420px]`}>
+                  {/* Unified Animated Glow Border for ALL Cards - Placed INSIDE the card and clipped */}
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-purple-500 to-primary rounded-[inherit] opacity-0 group-hover:opacity-75 transition-all duration-700 blur animate-pulse group-hover:animate-none" />
+                  <div className="absolute -inset-0.5 bg-gradient-to-l from-blue-500 via-primary to-purple-600 rounded-[inherit] opacity-0 group-hover:opacity-50 transition-all duration-500 blur-md" />
 
-                {/* Project Content */}
-                <div className="p-6">
-                  <div className="flex items-start justify-between mb-3">
-                    <h3 className="font-heading text-xl font-semibold group-hover:text-primary transition-smooth">
-                      {project.title}
-                    </h3>
-                    {project.featured && (
-                      <Badge className="bg-primary text-primary-foreground">Featured</Badge>
-                    )}
+                  {/* All Card Content goes here */}
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className="relative overflow-hidden rounded-t-lg h-32">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      
+                      {/* Project Icon Overlay */}
+                      <div className="absolute top-4 right-4 p-2 bg-white/90 dark:bg-black/90 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-110">
+                        {project.icon}
+                      </div>
+                    </div>
+                    
+                    <CardHeader className="pb-4">
+                      <CardTitle className="font-heading text-xl font-semibold group-hover:text-primary transition-colors duration-300 flex items-center gap-2">
+                        {project.title}
+                        {project.featured && (
+                          <Badge className="bg-gradient-to-r from-primary to-primary-glow text-white border-0 text-xs animate-pulse">
+                            Featured ⭐
+                          </Badge>
+                        )}
+                      </CardTitle>
+                      <CardDescription className="text-sm text-muted-foreground leading-relaxed">
+                        {project.description}
+                      </CardDescription>
+                    </CardHeader>
+                    
+                    <CardContent className="mt-auto">
+                      {/* Enhanced Tech Stack Section */}
+                      <div className="bg-muted/30 p-4 rounded-lg border border-primary/10 mb-6 group-hover:bg-primary/5 transition-colors duration-300">
+                        <h4 className="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-wider">Tech Stack</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {project.technologies.map((tech) => (
+                            <Badge 
+                              key={tech} 
+                              variant="secondary" 
+                              className="text-xs bg-primary/10 hover:bg-primary hover:text-primary-foreground transition-all duration-200 group-hover:scale-105 font-medium border border-primary/20"
+                            >
+                              {tech}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      <div className="flex gap-3">
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          className="flex items-center gap-2 hover:bg-primary hover:text-primary-foreground transition-all duration-300 group/btn border-primary/20 hover:shadow-lg"
+                          onClick={() => window.open(project.githubUrl, '_blank')}
+                        >
+                          <Github className="w-4 h-4 group-hover/btn:rotate-12 transition-transform duration-300" />
+                          View Code
+                        </Button>
+                      </div>
+                    </CardContent>
                   </div>
-
-                  <p className="text-muted-foreground mb-4 leading-relaxed">
-                    {project.description}
-                  </p>
-
-                  {/* Technologies */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech) => (
-                      <Badge key={tech} variant="outline" className="text-xs">
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-
-                  {/* Links */}
-                  <div className="flex space-x-3">
-                    <Button variant="outline" size="sm" className="flex-1">
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      Live Demo
-                    </Button>
-                    <Button variant="outline" size="sm" className="flex-1">
-                      <Github className="h-4 w-4 mr-2" />
-                      Source Code
-                    </Button>
-                  </div>
-                </div>
-              </Card>
+                </Card>
+              </div>
             ))}
           </div>
 
-          {/* View More */}
           <div className="text-center mt-12">
-            <Button variant="outline" size="lg" className="px-8">
-              View All Projects
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="group hover:bg-primary hover:text-primary-foreground transition-all duration-300 border-primary/20"
+              onClick={() => window.open('https://github.com/dabster108', '_blank')}
+            >
+              View All Projects on GitHub
+              <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
             </Button>
           </div>
         </div>
