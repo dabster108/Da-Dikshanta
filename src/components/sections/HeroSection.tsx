@@ -1,13 +1,61 @@
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Download, Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { useState, useEffect } from "react";
+
+// New component for the text animation
+const AnimatedText = ({ phrases, speed = 100, delay = 1500 }) => {
+  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
+  const [currentText, setCurrentText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    let timer;
+    const currentPhrase = phrases[currentPhraseIndex];
+
+    const handleType = () => {
+      // Typing logic
+      if (!isDeleting) {
+        setCurrentText(currentPhrase.substring(0, currentText.length + 1));
+        if (currentText === currentPhrase) {
+          timer = setTimeout(() => setIsDeleting(true), delay);
+        }
+      } else {
+        // Deleting logic
+        setCurrentText(currentPhrase.substring(0, currentText.length - 1));
+        if (currentText === "") {
+          setIsDeleting(false);
+          setCurrentPhraseIndex((prevIndex) => (prevIndex + 1) % phrases.length);
+        }
+      }
+      return () => clearTimeout(timer);
+    };
+
+    const typingSpeed = isDeleting ? speed / 2 : speed;
+    timer = setTimeout(handleType, typingSpeed);
+
+    return () => clearTimeout(timer);
+  }, [currentText, isDeleting, phrases, currentPhraseIndex, speed, delay]);
+
+  return (
+    <span className="relative inline-block">
+      {currentText}
+      <span className="absolute right-0 bottom-0 top-0 w-0.5 bg-foreground animate-blink" />
+    </span>
+  );
+};
 
 const HeroSection = () => {
-  const scrollToSection = (sectionId: string) => {
+  const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  const animatedPhrases = [
+    "AI/ML Enthusiast",
+    "Exploring the Future of AI"
+  ];
 
   return (
     <section
@@ -47,7 +95,7 @@ const HeroSection = () => {
             </h1>
             
             <p className="text-xl md:text-2xl text-muted-foreground mb-4 animate-slide-up" style={{ animationDelay: "0.2s" }}>
-              AI/ML Enthusiast Exploring Future of AI
+              <AnimatedText phrases={animatedPhrases} />
             </p>
             
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8 animate-slide-up" style={{ animationDelay: "0.4s" }}>
@@ -69,10 +117,7 @@ const HeroSection = () => {
               variant="outline"
               className="px-8 py-3 text-lg transition-smooth hover:scale-105 hover:bg-primary hover:text-primary-foreground"
               onClick={() => {
-                // Improved PDF handling with multiple fallbacks
                 const cvPath = '/cv/Dikshanta_Chapgain_Cv.pdf';
-                
-                // Method 1: Direct download
                 const downloadCV = () => {
                   const link = document.createElement('a');
                   link.href = cvPath;
@@ -82,8 +127,6 @@ const HeroSection = () => {
                   link.click();
                   document.body.removeChild(link);
                 };
-
-                // Method 2: Open in new window with proper headers
                 const openCV = () => {
                   const newWindow = window.open('', '_blank');
                   if (newWindow) {
@@ -105,12 +148,9 @@ const HeroSection = () => {
                     `);
                     newWindow.document.close();
                   } else {
-                    // Fallback: direct link
                     window.location.href = cvPath;
                   }
                 };
-
-                // Try download first, then fallback to viewing
                 try {
                   downloadCV();
                 } catch (error) {

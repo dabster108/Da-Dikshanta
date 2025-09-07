@@ -13,7 +13,7 @@ const ProjectsSection = () => {
       description: "An AI-powered mobile healthcare application built with Kotlin and Firebase. It helps patients manage their health efficiently with features like AI symptom checking, X-ray analysis, appointment booking, and hospital navigation. From mental health resources to medication reminders, Daktar Saab is your personal digital health assistant.",
       technologies: ["Kotlin", "Firebase", "AI/ML", "Mobile Development", "Healthcare"],
       githubUrl: "https://github.com/dabster108/DaktarSaab",
-      image: "/images/daktarsaab.jpg",
+      image: "/images/doctor.png",
       icon: <Heart className="w-5 h-5" />,
       featured: true
     },
@@ -23,7 +23,7 @@ const ProjectsSection = () => {
       description: "A deep learning project to detect Tuberculosis (TB) from chest X-ray images using a Convolutional Neural Network (CNN) built with PyTorch. Includes a FastAPI REST API and a simple HTML/CSS/JS frontend for uploading X-ray images and displaying real-time predictions with high accuracy.",
       technologies: ["PyTorch", "CNN", "FastAPI", "Deep Learning", "Medical AI"],
       githubUrl: "https://github.com/dabster108/Tuberculosis-X-ray-Prediction",
-      image: "/images/daktarsaab.jpg",
+      image: "/images/tuberclosis.png",
       icon: <Brain className="w-5 h-5" />,
       featured: true
     },
@@ -33,7 +33,7 @@ const ProjectsSection = () => {
       description: "A career recommendation system that uses a Random Forest Classifier to analyze student data and suggest potential career paths. Features data cleaning & preprocessing, feature importance analysis, and FastAPI-based web interface for seamless interaction.",
       technologies: ["Python", "Random Forest", "FastAPI", "Machine Learning", "Data Science"],
       githubUrl: "https://github.com/dabster108/FuturePathFinder",
-      image: "/images/daktarsaab.jpg",
+      image: "/images/carrer.png",
       icon: <Users className="w-5 h-5" />
     },
     {
@@ -42,7 +42,7 @@ const ProjectsSection = () => {
       description: "A professional website developed with my friend Pratik Joshi for Keywi Marketers, a digital advertising company. Built using JavaScript, Node.js, and Tailwind CSS, focusing on performance, responsiveness, and a clean UI/UX design.",
       technologies: ["JavaScript", "Node.js", "Tailwind CSS", "Web Development", "UI/UX"],
       githubUrl: "https://github.com/dabster108/KEYWI-MARKETERS",
-      image: "/images/daktarsaab.jpg",
+      image: "/images/marketers.png",
       icon: <ExternalLink className="w-5 h-5" />
     },
     {
@@ -51,7 +51,7 @@ const ProjectsSection = () => {
       description: "A software development project built with Gradle, showcasing structured source code aimed at solving specific programming tasks and larger applications. Demonstrates clean architecture and modern development practices.",
       technologies: ["Java", "Gradle", "Software Engineering", "Clean Code", "Architecture"],
       githubUrl: "https://github.com/dabster108/CodeSika",
-      image: "/images/daktarsaab.jpg",
+      image: "/images/codesika.png",
       icon: <Code className="w-5 h-5" />
     }
   ];
