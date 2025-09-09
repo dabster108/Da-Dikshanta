@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import RobotLottie from "@/components/RobotLottie";
 
 const queryClient = new QueryClient();
 
@@ -13,8 +14,9 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider defaultTheme="light" storageKey="portfolio-theme">
       <TooltipProvider>
-        <Toaster />
-        <Sonner />
+  <Toaster />
+  <Sonner />
+  <RobotLottie />
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
