@@ -60,7 +60,7 @@ const HeroSection = () => {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-background via-background to-accent/20"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-background via-background to-accent/20 px-4 sm:px-6 lg:px-8"
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
@@ -84,21 +84,21 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="max-w-3xl sm:max-w-4xl mx-auto text-center">
           {/* Main Content */}
           <div className="animate-fade-in">
-            <h1 className="font-heading text-5xl md:text-7xl font-bold mb-6">
+            <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
               <span className="bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
                 Dikshanta Chapagain
               </span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-muted-foreground mb-4 animate-slide-up" style={{ animationDelay: "0.2s" }}>
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-4 animate-slide-up" style={{ animationDelay: "0.2s" }}>
               <AnimatedText phrases={animatedPhrases} />
             </p>
             
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8 animate-slide-up" style={{ animationDelay: "0.4s" }}>
+            <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-xl sm:max-w-2xl mx-auto mb-8 animate-slide-up" style={{ animationDelay: "0.4s" }}>
               I craft intelligent solutions that blend cutting-edge AI technology with innovative design. 
               Passionate about creating AI-powered experiences that shape the future.
             </p>
@@ -165,7 +165,7 @@ const HeroSection = () => {
           </div>
 
           {/* Social Links */}
-          <div className="flex items-center justify-center space-x-6 mb-16 animate-slide-up" style={{ animationDelay: "0.8s" }}>
+          <div className="flex items-center justify-center space-x-4 sm:space-x-6 mb-16 animate-slide-up" style={{ animationDelay: "0.8s" }}>
             <Button variant="ghost" size="icon" asChild className="hover:scale-110 transition-spring hover:text-primary">
               <a href="https://github.com/dabster108" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                 <Github className="h-6 w-6" />

@@ -35,6 +35,8 @@ const Navigation = () => {
 
   return (
     <nav
+      role="navigation"
+      aria-label="Main navigation"
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-smooth",
         isScrolled
@@ -42,7 +44,7 @@ const Navigation = () => {
           : "bg-transparent"
       )}
     >
-      <div className="container mx-auto px-6 py-4">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <button
@@ -53,7 +55,7 @@ const Navigation = () => {
           </button>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8 ml-auto mr-4">
+          <div className="hidden md:flex items-center space-x-6 md:space-x-8 flex-1 justify-center">
             {navItems.map((item) => (
               <button
                 key={item.id}
@@ -67,24 +69,24 @@ const Navigation = () => {
           </div>
 
           {/* Profile Icon & Theme Toggle */}
-          <div className="hidden md:flex items-center space-x-3">
+          <div className="hidden md:flex items-center space-x-3 flex-shrink-0 ml-auto">
             <ThemeToggle />
-            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20 hover:border-primary/50 transition-colors duration-300 hover:scale-110 transform mt-1">
+            <div className="flex-shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-full overflow-hidden border-2 border-primary/20 hover:border-primary/50 transition-colors duration-300 hover:scale-110 transform mt-1">
               <img
                 src="/images/person.jpeg"
                 alt="Dikshanta Chapagain"
-                className="w-full h-full object-cover object-top"
+                className="w-full h-full object-cover object-center"
               />
             </div>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-2">
-            <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-primary/20 mt-1">
+            <div className="flex-shrink-0 w-8 h-8 rounded-full overflow-hidden border-2 border-primary/20 mt-1">
               <img
                 src="/images/person.jpeg"
                 alt="Dikshanta Chapagain"
-                className="w-full h-full object-cover object-top"
+                className="w-full h-full object-cover object-center"
               />
             </div>
             <ThemeToggle />
@@ -92,6 +94,8 @@ const Navigation = () => {
               variant="ghost"
               size="icon"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-menu"
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </Button>
@@ -100,13 +104,13 @@ const Navigation = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 animate-slide-up">
-            <div className="flex flex-col space-y-4">
+          <div id="mobile-menu" className="md:hidden mt-4 pb-4 animate-slide-up">
+            <div className="flex flex-col space-y-3 bg-card/95 border border-border rounded-lg p-4 shadow-md">
               {navItems.map((item, index) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="text-left text-muted-foreground hover:text-foreground transition-smooth py-2 hover:scale-105 animate-slide-in-left"
+                  className="text-left text-muted-foreground hover:text-foreground transition-smooth py-3 px-2 rounded-md text-base sm:text-lg hover:scale-105 animate-slide-in-left"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   {item.label}

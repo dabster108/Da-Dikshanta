@@ -30,8 +30,8 @@ const AboutSection = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-6xl mx-auto">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="max-w-5xl md:max-w-6xl mx-auto">
           {/* Section Header */}
           <div className={`text-center mb-16 transition-all duration-1000 ${
             sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -44,9 +44,9 @@ const AboutSection = () => {
             </p>
           </div>
 
-                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Profile Image */}
-            <div ref={imageRef} className={`relative group transition-all duration-1000 delay-300 ${
+      <div ref={imageRef} className={`relative group transition-all duration-1000 delay-300 ${
               imageVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
             }`}>
               <Card className="p-8 card-shadow transition-smooth hover:card-shadow-hover overflow-hidden hover:scale-105">
@@ -54,8 +54,8 @@ const AboutSection = () => {
                   <img
                     src="/images/person.jpeg"
                     alt="Dikshanta Chapagain"
-                    className="w-full h-full object-cover object-top transition-smooth group-hover:scale-105"
-                    style={{ objectPosition: '50% 20%' }}
+        className="w-full h-full object-cover object-center transition-smooth group-hover:scale-105"
+        style={{ objectPosition: '50% 20%' }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-smooth" />
                 </div>

@@ -346,6 +346,60 @@
   }
 }
 
+/* Responsive helpers */
+.responsive-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Small utility for container padding on mobile */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Sidebar layout adjustments: keep main content and fixed nav offset when sidebar is expanded */
+@media (min-width: 640px) {
+  /* When left sidebar expanded, push main content and container to the right */
+  .group > [data-side="left"][data-state="expanded"] ~ main,
+  .group > [data-side="left"][data-state="expanded"] ~ main .container {
+    margin-left: var(--sidebar-width);
+  }
+
+  /* When right sidebar expanded, push main content and container to the left */
+  .group > [data-side="right"][data-state="expanded"] ~ main,
+  .group > [data-side="right"][data-state="expanded"] ~ main .container {
+    margin-right: var(--sidebar-width);
+  }
+
+  /* Offset the fixed top navigation inner content so it doesn't overlap the sidebar */
+  .group > [data-side="left"][data-state="expanded"] ~ main nav .container {
+    padding-left: calc(var(--sidebar-width) + 0.5rem);
+  }
+  .group > [data-side="right"][data-state="expanded"] ~ main nav .container {
+    padding-right: calc(var(--sidebar-width) + 0.5rem);
+  }
+
+  /* Prevent horizontal overflow when toggling sidebar */
+  html, body {
+    overflow-x: clip;
+  }
+}
+
+/* On small screens ensure the sidebar does not push content (sheet/overlay mode) */
+@media (max-width: 639px) {
+  .group > [data-side] ~ main,
+  .group > [data-side] ~ main .container {
+    margin: 0;
+    padding: 0;
+  }
+}
+
 @keyframes fade-in {
   from {
     opacity: 0;

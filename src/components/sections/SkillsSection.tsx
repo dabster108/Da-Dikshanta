@@ -61,8 +61,8 @@ const SkillsSection = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-6xl mx-auto">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="max-w-5xl md:max-w-6xl mx-auto">
           {/* Section Header */}
           <div ref={headerRef} className={`text-center mb-16 transition-all duration-1000 ${
             headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -76,17 +76,17 @@ const SkillsSection = () => {
           </div>
 
           {/* Skills Grid */}
-          <div ref={gridRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {skillCategories.map((category, index) => (
               <Card 
                 key={category.title} 
-                className={`p-6 card-shadow transition-all duration-1000 hover:card-shadow-hover hover:scale-105 group hover-lift ${
+        className={`p-4 sm:p-6 card-shadow transition-all duration-1000 hover:card-shadow-hover hover:scale-105 group hover-lift ${
                   gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                 }`}
                 style={{ transitionDelay: `${300 + index * 150}ms` }}
               >
                 {/* Icon */}
-                <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${category.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-spring animate-glow`}>
+                <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-r ${category.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-spring animate-glow`}>
                   <category.icon className="h-6 w-6 text-white" />
                 </div>
 

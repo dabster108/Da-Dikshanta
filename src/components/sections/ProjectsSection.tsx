@@ -80,8 +80,8 @@ const ProjectsSection = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-6xl mx-auto">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="max-w-5xl md:max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4">
@@ -93,7 +93,7 @@ const ProjectsSection = () => {
             </p>
           </div>
 
-          <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div ref={containerRef} className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {projects.map((project, index) => (
               <div
                 key={project.id}
@@ -110,16 +110,16 @@ const ProjectsSection = () => {
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-purple-500 to-primary rounded-xl opacity-0 group-hover:opacity-75 transition-all duration-700 blur-sm" />
                 <div className="absolute -inset-0.5 bg-gradient-to-l from-blue-500 via-primary to-purple-600 rounded-xl opacity-0 group-hover:opacity-50 transition-all duration-500 blur-md" />
 
-                <Card className={`relative overflow-hidden border-2 transform bg-card/90 backdrop-blur-sm ${
+        <Card className={`relative overflow-hidden border-2 transform bg-card/90 backdrop-blur-sm ${
                   project.featured ? 'ring-2 ring-primary/30 border-primary/50 shadow-lg shadow-primary/20' : 'border-border'
                 } h-full`}>
                   {/* All Card Content goes here */}
                   <div className="relative z-10 flex flex-col h-full">
-                    <div className="relative overflow-hidden rounded-t-lg h-32">
+          <div className="relative overflow-hidden rounded-t-lg h-40 sm:h-36 md:h-32 lg:h-40">
                       <img
                         src={project.image}
                         alt={project.title}
-                        className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-center"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                       
