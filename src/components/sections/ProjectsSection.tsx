@@ -2,7 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, Brain, Heart, Users, Code } from "lucide-react";
-import { useStaggeredScrollAnimation } from "@/hooks/use-scroll-animation";
+import { usePerItemFadeOnScroll } from "@/hooks/use-scroll-animation";
 import { useState, useEffect } from "react";
 
 const ProjectsSection = () => {
@@ -56,14 +56,7 @@ const ProjectsSection = () => {
     }
   ];
 
-  const { containerRef, visibleItems } = useStaggeredScrollAnimation(projects.length);
-  const [hasAnimated, setHasAnimated] = useState(Array(projects.length).fill(false));
-
-  useEffect(() => {
-    setHasAnimated((prev) =>
-      prev.map((animated, index) => animated || visibleItems[index])
-    );
-  }, [visibleItems]);
+  const { setItemRef, visibleItems } = usePerItemFadeOnScroll(projects.length, { threshold: 0.2, rootMargin: "0px 0px -10% 0px" });
 
   return (
     <section id="projects" className="py-20 bg-accent/20 relative overflow-hidden">
@@ -93,18 +86,17 @@ const ProjectsSection = () => {
             </p>
           </div>
 
-          <div ref={containerRef} className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {projects.map((project, index) => (
               <div
                 key={project.id}
+                ref={setItemRef(index)}
                 className={`group relative transition-all duration-700 transform ${
-                  hasAnimated[index]
+                  visibleItems[index]
                     ? 'opacity-100 translate-y-0'
                     : 'opacity-0 translate-y-8'
                 }`}
-                style={{
-                  transitionDelay: hasAnimated[index] ? `${index * 150}ms` : '0ms'
-                }}
+                style={{ transitionDelay: `${index * 120}ms` }}
               >
                 {/* Unified Animated Glow Border for ALL Cards - Placed OUTSIDE the card */}
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-purple-500 to-primary rounded-xl opacity-0 group-hover:opacity-75 transition-all duration-700 blur-sm" />

@@ -75,3 +75,80 @@ export const useStaggeredScrollAnimation = (
 
   return { containerRef, visibleItems };
 };
+
+// Direction-aware per-item fade in/out
+export const usePerItemFadeOnScroll = (
+  itemCount: number,
+  options: ScrollAnimationOptions = {}
+) => {
+  const { threshold = 0.1, rootMargin = '0px' } = options;
+  const [visibleItems, setVisibleItems] = useState<boolean[]>(
+    new Array(itemCount).fill(false)
+  );
+  const elementToIndex = useRef(new Map<Element, number>());
+  const elements = useRef<(HTMLElement | null)[]>(new Array(itemCount).fill(null));
+  const lastScrollY = useRef<number>(typeof window !== 'undefined' ? window.scrollY : 0);
+  const scrollDirectionRef = useRef<'down' | 'up'>('down');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      scrollDirectionRef.current = currentY > lastScrollY.current ? 'down' : 'up';
+      lastScrollY.current = currentY;
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const dir = scrollDirectionRef.current;
+        setVisibleItems((prev) => {
+          const next = [...prev];
+          for (const entry of entries) {
+            const idx = elementToIndex.current.get(entry.target);
+            if (idx === undefined) continue;
+            if (entry.isIntersecting && dir === 'down') {
+              next[idx] = true; // fade in on scroll down
+            }
+            if (!entry.isIntersecting && dir === 'up') {
+              next[idx] = false; // fade out on scroll up when leaving
+            }
+          }
+          return next;
+        });
+      },
+      { threshold, rootMargin }
+    );
+
+    // Observe current elements
+    elements.current.forEach((el) => {
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [threshold, rootMargin, itemCount]);
+
+  useEffect(() => {
+    // Keep arrays in sync if itemCount changes
+    elements.current = new Array(itemCount).fill(null);
+    setVisibleItems(new Array(itemCount).fill(false));
+    elementToIndex.current.clear();
+  }, [itemCount]);
+
+  const setItemRef = (index: number) => (el: HTMLElement | null) => {
+    const prevEl = elements.current[index];
+    if (prevEl) {
+      elementToIndex.current.delete(prevEl);
+    }
+    elements.current[index] = el;
+    if (el) {
+      elementToIndex.current.set(el, index);
+    }
+  };
+
+  return { setItemRef, visibleItems };
+};
