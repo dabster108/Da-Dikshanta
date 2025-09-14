@@ -1,21 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Force dark mode immediately - MUST be first to prevent FOUC -->
+    <script>
+      (function() {
+        try {
+          // Add dark class to html element immediately
+          document.documentElement.classList.add('dark');
+          
+          // Also set it as an attribute for additional safety
+          document.documentElement.setAttribute('data-theme', 'dark');
+          
+          // Override any system preferences or localStorage
+          if (typeof localStorage !== 'undefined') {
+            localStorage.setItem('theme', 'dark');
+          }
+        } catch (e) {
+          // Silent fail - fallback styles will handle it
+        }
+      })();
+    </script>
+
+    <!-- Inline fallback dark mode styles to prevent FOUC -->
+    <style>
+      /* Critical dark mode styles that apply immediately */
+      html.dark, html[data-theme="dark"] {
+        color-scheme: dark;
+      }
+      
+      html.dark body, html[data-theme="dark"] body {
+        background-color: #0a0a0a;
+        color: #ffffff;
+      }
+      
+      /* Ensure dark mode is applied even if script fails */
+      html:not(.light) {
+        color-scheme: dark;
+      }
+      
+      html:not(.light) body {
+        background-color: #0a0a0a;
+        color: #ffffff;
+      }
+    </style>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dikshanta Chapagain - Portfolio</title>
     <meta name="description" content="AI/ML Enthusiast exploring the future of AI with modern portfolio showcasing innovative projects" />
     <meta name="author" content="Dikshanta Chapagain" />
-
-    <!-- Force dark mode immediately -->
-    <script>
-      // This runs before CSS loads to ensure dark mode applies instantly
-      try {
-        document.documentElement.classList.add('dark');
-      } catch (e) {
-        console.error('Failed to add dark mode class', e);
-      }
-    </script>
 
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='white'/><text x='16' y='22' font-family='system-ui' font-size='18' font-weight='bold' text-anchor='middle' fill='black'>D</text></svg>">
@@ -27,8 +60,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-    <!-- Tailwind CSS (compiled) -->
-    <link rel="stylesheet" href="/assets/index-B6vEmmNO.css" />
+    <!-- Tailwind CSS - Vite will handle the correct path in dev/prod -->
+    <link rel="stylesheet" href="/src/index.css" />
 
     <!-- Open Graph / Twitter -->
     <meta property="og:title" content="Dikshanta Chapagain - Portfolio" />
