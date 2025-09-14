@@ -81,7 +81,7 @@ const Navigation = () => {
           </div>
 
           {/* Mobile Menu Section */}
-          <div className="lg:hidden flex items-center space-x-2 flex-shrink-0">
+          <div className="lg:hidden flex items-center space-x-2 flex-shrink-0 pr-2">
             <div className="flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden border-2 border-primary/20">
               <img
                 src="/images/person.jpeg"
