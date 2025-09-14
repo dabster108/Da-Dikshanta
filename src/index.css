@@ -6,73 +6,7 @@
 
 @layer base {
   :root {
-    /* Modern color palette */
-    --background: 0 0% 99%;
-    --foreground: 220 15% 12%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 220 15% 12%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 15% 12%;
-
-    /* Primary: Modern blue-purple gradient */
-    --primary: 240 75% 60%;
-    --primary-foreground: 0 0% 100%;
-    --primary-glow: 250 80% 70%;
-
-    /* Secondary: Elegant gray tones */
-    --secondary: 220 15% 96%;
-    --secondary-foreground: 220 15% 15%;
-
-    --muted: 220 15% 96%;
-    --muted-foreground: 220 12% 45%;
-
-    --accent: 240 75% 97%;
-    --accent-foreground: 240 75% 15%;
-
-    --destructive: 0 75% 60%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 220 15% 92%;
-    --input: 220 15% 92%;
-    --ring: 240 75% 60%;
-
-    --radius: 0.75rem;
-
-    /* Custom design tokens */
-    --hero-gradient: linear-gradient(135deg, hsl(240, 75%, 60%), hsl(250, 80%, 70%));
-    --hero-gradient-hover: linear-gradient(135deg, hsl(240, 80%, 65%), hsl(250, 85%, 75%));
-    --card-shadow: 0 4px 20px -2px hsl(240 10% 20% / 0.08);
-    --card-shadow-hover: 0 8px 30px -4px hsl(240 20% 30% / 0.15);
-    --glow-shadow: 0 0 40px hsl(240 75% 60% / 0.3);
-    
-    /* Typography */
-    --font-heading: 'Playfair Display', serif;
-    --font-body: 'Inter', sans-serif;
-    
-    /* Transitions */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
+    /* Dark mode only - Modern color palette */
     --background: 220 25% 5%;
     --foreground: 220 15% 95%;
 
@@ -82,10 +16,12 @@
     --popover: 220 20% 8%;
     --popover-foreground: 220 15% 95%;
 
+    /* Primary: Modern blue-purple gradient */
     --primary: 240 75% 65%;
     --primary-foreground: 220 25% 5%;
     --primary-glow: 250 80% 75%;
 
+    /* Secondary: Elegant gray tones */
     --secondary: 220 20% 12%;
     --secondary-foreground: 220 15% 90%;
 
@@ -102,12 +38,23 @@
     --input: 220 20% 15%;
     --ring: 240 75% 65%;
 
-    /* Dark mode adjustments */
+    --radius: 0.75rem;
+
+    /* Custom design tokens - Dark mode */
     --hero-gradient: linear-gradient(135deg, hsl(240, 75%, 65%), hsl(250, 80%, 75%));
     --hero-gradient-hover: linear-gradient(135deg, hsl(240, 80%, 70%), hsl(250, 85%, 80%));
     --card-shadow: 0 4px 20px -2px hsl(0 0% 0% / 0.3);
     --card-shadow-hover: 0 8px 30px -4px hsl(0 0% 0% / 0.4);
     --glow-shadow: 0 0 40px hsl(240 75% 65% / 0.4);
+    
+    /* Typography */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -117,6 +64,7 @@
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
 }
 
 @layer base {

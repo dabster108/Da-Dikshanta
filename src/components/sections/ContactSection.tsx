@@ -86,7 +86,7 @@ export default function ContactSection(): JSX.Element {
                 </div>
 
                 <div>
-                  <Button type="submit" className="w-full hero-gradient hero-gradient-hover text-white">Send Message</Button>
+                  <Button type="submit" className="w-full hero-gradient hero-gradient-hover text-primary-foreground">Send Message</Button>
                 </div>
               </form>
             </div>

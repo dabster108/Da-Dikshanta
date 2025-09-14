@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -55,7 +54,7 @@ const Navigation = () => {
           </button>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-6 lg:space-x-8 flex-1 justify-end">
+          <div className="hidden lg:flex items-center space-x-6 lg:space-x-8 flex-1 justify-end mr-6">
             {navItems.map((item) => (
               <button
                 key={item.id}
@@ -68,9 +67,8 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Desktop Profile Icon & Theme Toggle */}
+          {/* Desktop Profile Icon */}
           <div className="hidden lg:flex items-center space-x-3 flex-shrink-0">
-            <ThemeToggle />
             <div className="flex-shrink-0 w-8 h-8 lg:w-10 lg:h-10 rounded-full overflow-hidden border-2 border-primary/20 hover:border-primary/50 transition-colors duration-300 hover:scale-110 transform">
               <img
                 src="/images/person.jpeg"
@@ -88,9 +86,6 @@ const Navigation = () => {
                 alt="Dikshanta Chapagain"
                 className="w-full h-full object-cover object-top"
               />
-            </div>
-            <div className="flex-shrink-0">
-              <ThemeToggle />
             </div>
             <Button
               variant="ghost"

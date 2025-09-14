@@ -87,7 +87,7 @@ const SkillsSection = () => {
               >
                 {/* Icon */}
                 <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-r ${category.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-spring animate-glow`}>
-                  <category.icon className="h-6 w-6 text-white" />
+                  <category.icon className="h-6 w-6 text-primary-foreground" />
                 </div>
 
                 {/* Title */}

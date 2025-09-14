@@ -116,7 +116,7 @@ const ProjectsSection = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                       
                       {/* Project Icon Overlay */}
-                      <div className="absolute top-4 right-4 p-2 bg-white/90 dark:bg-black/90 rounded-full">
+                      <div className="absolute top-4 right-4 p-2 bg-background/90 rounded-full">
                         {project.icon}
                       </div>
                     </div>
@@ -125,7 +125,7 @@ const ProjectsSection = () => {
                       <CardTitle className="font-heading text-xl font-semibold flex items-center gap-2">
                         {project.title}
                         {project.featured && (
-                          <Badge className="bg-gradient-to-r from-primary to-primary-glow text-white border-0 text-xs animate-pulse">
+                          <Badge className="bg-gradient-to-r from-primary to-primary-glow text-primary-foreground border-0 text-xs animate-pulse">
                             Featured ⭐
                           </Badge>
                         )}

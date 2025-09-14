@@ -108,7 +108,7 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 animate-slide-up" style={{ animationDelay: "0.6s" }}>
             <Button
               onClick={() => scrollToSection("projects")}
-              className="hero-gradient hero-gradient-hover text-white px-8 py-3 text-lg transition-smooth hover:scale-105 hover:glow-shadow animate-glow"
+              className="hero-gradient hero-gradient-hover text-primary-foreground px-8 py-3 text-lg transition-smooth hover:scale-105 hover:glow-shadow animate-glow"
             >
               View My Work
             </Button>
