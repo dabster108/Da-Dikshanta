@@ -9,12 +9,12 @@
 
     <!-- Force dark mode immediately -->
     <script>
-      (function() {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark' || !savedTheme) {
-          document.documentElement.classList.add('dark');
-        }
-      })();
+      // This runs before CSS loads to ensure dark mode applies instantly
+      try {
+        document.documentElement.classList.add('dark');
+      } catch (e) {
+        console.error('Failed to add dark mode class', e);
+      }
     </script>
 
     <!-- Favicon -->
@@ -23,9 +23,12 @@
     <link rel="shortcut icon" href="/favicon.svg">
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CSS (compiled) -->
+    <link rel="stylesheet" href="/assets/index-B6vEmmNO.css" />
 
     <!-- Open Graph / Twitter -->
     <meta property="og:title" content="Dikshanta Chapagain - Portfolio" />
@@ -39,6 +42,7 @@
 
   <body>
     <div id="root"></div>
+
     <!-- React entry point -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
