@@ -11,37 +11,80 @@ const SkillsSection = () => {
     {
       icon: Code,
       title: "AI & Machine Learning",
-      skills: ["Python", "TensorFlow", "PyTorch", "Scikit-learn", "Neural Networks", "OpenAI API"],
+      skills: [
+        "Python",
+        "TensorFlow",
+        "PyTorch",
+        "Scikit-learn",
+        "Keras",
+        "Pandas",
+        "NumPy",
+        "Matplotlib / Seaborn",
+        "Deep Learning",
+        "Machine Learning Algorithms",
+        "OpenAI API",
+      ],
       color: "from-blue-500 to-cyan-500"
     },
     {
       icon: Database,
       title: "Backend Development",
-      skills: ["Node.js", "Python", "PostgreSQL", "MongoDB", "GraphQL", "REST APIs"],
+      skills: [
+        "Node.js",
+        "Python (backend)",
+        "PostgreSQL",
+        "MongoDB",
+        "GraphQL",
+        "REST APIs",
+        "SQL / NoSQL databases",
+        "API Design & Development",
+      ],
       color: "from-green-500 to-emerald-500"
     },
     {
       icon: Smartphone,
       title: "Mobile Development",
-      skills: ["Kotlin", "Android", "Firebase", "React Native", "iOS", "Mobile UI/UX"],
+      skills: [
+        "Kotlin",
+        "Android",
+        "Firebase",
+        "React Native",
+        "Mobile UI/UX",
+        "Cross-platform development",
+      ],
       color: "from-orange-500 to-red-500"
     },
     {
       icon: Globe,
       title: "Frontend Development",
-      skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Vue.js", "SASS"],
+      skills: [
+        "React",
+        "TypeScript",
+        "Next.js",
+        "Tailwind CSS",
+        "HTML / CSS / JavaScript",
+        "Responsive Design",
+        "UI/UX Principles",
+      ],
       color: "from-purple-500 to-pink-500"
     },
     {
       icon: Cloud,
       title: "DevOps & Cloud",
-      skills: ["AWS", "Docker", "Kubernetes", "CI/CD", "Terraform", "Monitoring"],
+      skills: ["Docker", "CI/CD", "Monitoring", "GitOps"],
       color: "from-indigo-500 to-purple-500"
     },
     {
       icon: Palette,
       title: "Design & Tools",
-      skills: ["Figma", "UI/UX Design", "Git", "Linux", "Agile", "Testing"],
+      skills: [
+        "Figma",
+        "UI/UX Design",
+        "Git",
+        "Linux",
+        "Photoshop / Illustrator",
+        "Canva",
+      ],
       color: "from-teal-500 to-blue-500"
     }
   ];
