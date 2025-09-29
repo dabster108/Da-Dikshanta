@@ -27,7 +27,6 @@
 
     <!-- Inline fallback dark mode styles to prevent FOUC -->
     <style>
-      /* Critical dark mode styles that apply immediately */
       html.dark, html[data-theme="dark"] {
         color-scheme: dark;
       }
@@ -37,7 +36,6 @@
         color: #ffffff;
       }
       
-      /* Ensure dark mode is applied even if script fails */
       html:not(.light) {
         color-scheme: dark;
       }
@@ -48,10 +46,10 @@
       }
     </style>
 
-    <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='white'/><text x='16' y='22' font-family='system-ui' font-size='18' font-weight='bold' text-anchor='middle' fill='black'>D</text></svg>">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="shortcut icon" href="/favicon.svg">
+    <!-- Favicon (all consistent) -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/hack.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/hack.png" />
+    <link rel="shortcut icon" href="/images/hack.png" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
