@@ -52,7 +52,7 @@ const AboutSection = () => {
               <Card className="p-8 card-shadow transition-smooth hover:card-shadow-hover overflow-hidden hover:scale-105">
                 <div className="relative aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-primary/10 to-primary-glow/10">
                   <img
-                    src="/images/person.jpeg"
+                    src="/images/me.jpeg"
                     alt="Dikshanta Chapagain"
         className="w-full h-full object-cover object-center transition-smooth group-hover:scale-105"
         style={{ objectPosition: '50% 20%' }}
