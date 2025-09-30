@@ -34,7 +34,7 @@ const SkillsSection = () => {
         "Python (backend)",
         "PostgreSQL",
         "MongoDB",
-        "GraphQL",
+        "FastAPI",
         "REST APIs",
         "SQL / NoSQL databases",
         "API Design & Development",
