@@ -58,7 +58,7 @@ export default function ContactSection(): JSX.Element {
             <p className={`text-xl text-muted-foreground max-w-2xl mx-auto transition-all duration-1000 delay-200 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>Let's discuss your next AI project or just say hello</p>
           </div>
 
-          <div ref={gridRef} className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+            <div ref={gridRef} className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             {/* Left: Form */}
       <div className={`p-6 sm:p-8 card-shadow hover:card-shadow-hover transition-all duration-1000 hover:scale-105 rounded-lg border-2 border-primary ${visibleItems[0] ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`} style={{ transitionDelay: visibleItems[0] ? '0ms' : undefined }}>
               <h3 className="font-heading text-2xl font-semibold mb-6">Send a Message</h3>

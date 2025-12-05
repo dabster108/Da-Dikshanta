@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Code, Database, Globe, Smartphone, Cloud, Palette } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import ParticlesBackground from "../ParticlesBackground";
 
 const SkillsSection = () => {
   const { elementRef: sectionRef, isVisible: sectionVisible } = useScrollAnimation({ threshold: 0.2 });
@@ -91,6 +92,7 @@ const SkillsSection = () => {
 
   return (
     <section ref={sectionRef} id="skills" className="py-20 bg-background relative overflow-hidden">
+      <ParticlesBackground />
       {/* Background Decorative Icons */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-16 left-16 w-14 h-14 rounded-full bg-primary/8 flex items-center justify-center animate-float">

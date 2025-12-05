@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Download, Github, Linkedin, Mail, Twitter } from "lucide-react";
 import { useState, useEffect } from "react";
+import ParticlesBackground from "../ParticlesBackground";
 
 // New component for the text animation
 const AnimatedText = ({ phrases, speed = 100, delay = 1500 }) => {
@@ -62,26 +63,11 @@ const HeroSection = () => {
       id="hero"
       className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-background via-background to-accent/20 px-4 sm:px-6 lg:px-8"
     >
+      <ParticlesBackground />
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary rounded-full mix-blend-multiply filter blur-xl animate-float"></div>
         <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-primary-glow rounded-full mix-blend-multiply filter blur-xl animate-float" style={{ animationDelay: "1s" }}></div>
-      </div>
-
-      {/* Decorative Icons */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 right-20 w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center animate-float">
-          <img src="/favicon.ico" alt="" className="w-8 h-8 opacity-30" />
-        </div>
-        <div className="absolute top-1/2 left-10 w-12 h-12 rounded-full bg-primary-glow/10 flex items-center justify-center animate-float" style={{ animationDelay: "2s" }}>
-          <img src="/favicon.ico" alt="" className="w-6 h-6 opacity-20" />
-        </div>
-        <div className="absolute bottom-32 right-1/3 w-14 h-14 rounded-full bg-primary/15 flex items-center justify-center animate-float" style={{ animationDelay: "3s" }}>
-          <img src="/favicon.ico" alt="" className="w-7 h-7 opacity-25" />
-        </div>
-        <div className="absolute top-3/4 left-1/3 w-10 h-10 rounded-full bg-primary-glow/20 flex items-center justify-center animate-float" style={{ animationDelay: "4s" }}>
-          <img src="/favicon.ico" alt="" className="w-5 h-5 opacity-15" />
-        </div>
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
@@ -89,7 +75,7 @@ const HeroSection = () => {
           {/* Main Content */}
           <div className="animate-fade-in">
             <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              <span className="bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
+              <span className="animate-text-shimmer">
                 Dikshanta Chapagain
               </span>
             </h1>

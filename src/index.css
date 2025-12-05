@@ -130,6 +130,22 @@
   .animate-glow {
     animation: glow 2s ease-in-out infinite alternate;
   }
+
+  .animate-text-shimmer {
+    background: linear-gradient(
+      to right,
+      hsl(var(--primary)) 0%,
+      hsl(var(--primary)) 40%,
+      #ffffff 50%,
+      hsl(var(--primary)) 60%,
+      hsl(var(--primary)) 100%
+    );
+    background-size: 200% auto;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    animation: text-shimmer 10s linear infinite alternate;
+  }
   
   /* Utility classes */
   .hero-gradient {
@@ -436,5 +452,14 @@
   }
   to {
     box-shadow: 0 0 30px hsl(240 75% 60% / 0.6), 0 0 40px hsl(240 75% 60% / 0.3);
+  }
+}
+
+@keyframes text-shimmer {
+  0% {
+    background-position: 100% center;
+  }
+  100% {
+    background-position: 0% center;
   }
 }

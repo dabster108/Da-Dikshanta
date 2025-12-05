@@ -20,26 +20,8 @@ const Footer = () => {
             Dikshanta Chapagain
           </button>
 
-          {/* Navigation Links */}
-          <nav className="flex flex-wrap justify-center gap-8 text-sm animate-slide-up" style={{ animationDelay: "0.2s" }}>
-            {["Home", "About", "Skills", "Projects", "Contact"].map((item, index) => (
-              <button
-                key={item}
-                onClick={() => {
-                  const element = document.getElementById(item.toLowerCase() === 'home' ? 'hero' : item.toLowerCase());
-                  if (element) element.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="text-muted-foreground hover:text-foreground transition-smooth relative group hover:scale-105"
-                style={{ animationDelay: `${0.3 + index * 0.1}s` }}
-              >
-                {item}
-                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary to-primary-glow scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
-              </button>
-            ))}
-          </nav>
-
           {/* Social Links */}
-          <div className="flex space-x-4 animate-bounce-in" style={{ animationDelay: "0.6s" }}>
+          <div className="flex space-x-4 animate-bounce-in" style={{ animationDelay: "0.4s" }}>
             <Button variant="ghost" size="icon" asChild className="hover:scale-110 transition-spring hover:text-primary animate-glow">
               <a href="https://github.com/dabster108" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                 <Github className="h-5 w-5" />
@@ -58,7 +40,7 @@ const Footer = () => {
           </div>
 
           {/* Copyright */}
-          <div className="flex items-center space-x-2 text-sm text-muted-foreground animate-fade-in" style={{ animationDelay: "0.8s" }}>
+          <div className="flex items-center space-x-2 text-sm text-muted-foreground animate-fade-in" style={{ animationDelay: "0.6s" }}>
             <span>© {currentYear} Dikshanta Chapagain. Made with</span>
             <Heart className="h-4 w-4 text-primary fill-current animate-pulse" />
             <span>and lots of coffee.</span>

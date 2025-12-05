@@ -54,7 +54,7 @@ const Navigation = () => {
           </button>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-6 lg:space-x-8 flex-1 justify-end mr-6">
+          <div className="hidden lg:flex items-center space-x-6 lg:space-x-8 flex-1 justify-end">
             {navItems.map((item) => (
               <button
                 key={item.id}
@@ -67,26 +67,8 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Desktop Profile Icon */}
-          <div className="hidden lg:flex items-center space-x-3 flex-shrink-0">
-            <div className="flex-shrink-0 w-8 h-8 lg:w-10 lg:h-10 rounded-full overflow-hidden border-2 border-primary/20 hover:border-primary/50 transition-colors duration-300 hover:scale-110 transform">
-              <img
-                src="/images/person.jpeg"
-                alt="Dikshanta Chapagain"
-                className="w-full h-full object-cover object-top"
-              />
-            </div>
-          </div>
-
           {/* Mobile Menu Section */}
-          <div className="lg:hidden flex items-center space-x-2 flex-shrink-0 pr-2">
-            <div className="flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden border-2 border-primary/20">
-              <img
-                src="/images/person.jpeg"
-                alt="Dikshanta Chapagain"
-                className="w-full h-full object-cover object-top"
-              />
-            </div>
+          <div className="lg:hidden flex items-center flex-shrink-0">
             <Button
               variant="ghost"
               size="icon"
