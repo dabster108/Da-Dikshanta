@@ -31,6 +31,16 @@ export default async function handler(req, res) {
     });
   }
 
+  // Check if environment variables are set
+  if (!process.env.SMTP_HOST || !process.env.SMTP_PORT || !process.env.SMTP_MAIL || !process.env.SMTP_PASSWORD) {
+    console.error('Missing SMTP environment variables');
+    return res.status(500).json({
+      success: false,
+      message: 'Server configuration error. Please contact the administrator.',
+      error: 'SMTP credentials not configured'
+    });
+  }
+
   try {
     // Create nodemailer transporter
     const transporter = nodemailer.createTransport({
