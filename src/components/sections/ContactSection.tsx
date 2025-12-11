@@ -5,8 +5,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { app, database } from "@/lib/firebase";
-import { ref as dbRef, push as dbPush } from "firebase/database";
 import { Mail, Phone, MapPin, Github, Linkedin, Twitter } from "lucide-react";
 
 export default function ContactSection(): JSX.Element {
@@ -14,6 +12,7 @@ export default function ContactSection(): JSX.Element {
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation({ threshold: 0.2 });
   const { containerRef: gridRef, visibleItems } = useStaggeredScrollAnimation(3, { threshold: 0.2 });
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const formRef = useRef<HTMLFormElement | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -22,16 +21,46 @@ export default function ContactSection(): JSX.Element {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Show loading toast
+    toast({ 
+      title: "Sending message...", 
+      description: "Please wait while we send your message.",
+      duration: Infinity, // Keep it open until we update it
+    });
+    
     try {
-      const contactsRef = dbRef(database, "contacts_table");
-  await dbPush(contactsRef, form);
-  toast({ title: "Message sent!", description: "Thank you for your message. I'll get back to you soon." });
-      setForm({ name: "", email: "", subject: "", message: "" });
-      if (formRef.current) formRef.current.reset();
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        toast({ 
+          title: "Message sent!", 
+          description: "Thank you for your message. I'll get back to you soon." 
+        });
+        setForm({ name: "", email: "", subject: "", message: "" });
+        if (formRef.current) formRef.current.reset();
+      } else {
+        throw new Error(data.message || 'Failed to send message');
+      }
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error("Error while sending message:", error);
-      toast({ title: "Error", description: "Failed to send your message. Please try again later.", variant: "destructive" as any });
+      toast({ 
+        title: "Error", 
+        description: "Failed to send your message. Please try again later.", 
+        variant: "destructive" as any 
+      });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -86,7 +115,23 @@ export default function ContactSection(): JSX.Element {
                 </div>
 
                 <div>
-                  <Button type="submit" className="w-full hero-gradient hero-gradient-hover text-primary-foreground">Send Message</Button>
+                  <Button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="w-full hero-gradient hero-gradient-hover text-primary-foreground disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? (
+                      <span className="flex items-center gap-2">
+                        <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Sending...
+                      </span>
+                    ) : (
+                      "Send Message"
+                    )}
+                  </Button>
                 </div>
               </form>
             </div>
