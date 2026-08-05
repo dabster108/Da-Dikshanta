@@ -79,7 +79,7 @@ export default function ContactSection(): JSX.Element {
   ];
 
   return (
-    <section id="contact" data-scroll-section className="py-20 bg-background">
+    <section id="contact" data-scroll-section className="py-20 bg-background/40 backdrop-blur-[2px] relative">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <div ref={headerRef} className="text-center mb-16">

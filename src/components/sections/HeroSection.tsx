@@ -7,9 +7,10 @@ import {
   Mail,
   Twitter,
 } from "lucide-react";
-import { lazy, Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useScrollContext } from "@/contexts/ScrollContext";
+import { useIntroGate } from "@/hooks/use-intro-gate";
 
 interface AnimatedTextProps {
   phrases: string[];
@@ -64,18 +65,14 @@ const AnimatedText = ({
   );
 };
 
-const ThreeHeroCanvas = lazy(() =>
-  import("@/components/effects/ThreeHeroCanvas").catch(() => ({
-    default: () => null,
-  })),
-);
-
 interface HeroSectionProps {
   scrollY?: number;
 }
 
 const HeroSection = ({ scrollY = 0 }: HeroSectionProps) => {
   const { scrollToSection } = useScrollContext();
+  // Held back until the network finishes spelling the name out of its nodes.
+  const revealed = useIntroGate();
 
   const animatedPhrases = ["AI/ML Enthusiast", "Exploring the Future of AI"];
 
@@ -83,11 +80,8 @@ const HeroSection = ({ scrollY = 0 }: HeroSectionProps) => {
     <section
       id="hero"
       data-scroll-section
-      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-background via-background to-accent/20 px-4 sm:px-6 lg:px-8"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden px-4 sm:px-6 lg:px-8"
     >
-      <Suspense fallback={null}>
-        <ThreeHeroCanvas scrollY={scrollY} />
-      </Suspense>
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary rounded-full mix-blend-multiply filter blur-xl animate-float"></div>
@@ -105,12 +99,12 @@ const HeroSection = ({ scrollY = 0 }: HeroSectionProps) => {
           {/* Main Content */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={revealed ? { opacity: 1, y: 0 } : { opacity: 0 }}
             transition={{ duration: 0.85 }}
           >
             <motion.h1
               initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={revealed ? { opacity: 1, y: 0 } : { opacity: 0 }}
               transition={{ duration: 0.75, delay: 0.1 }}
               className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
             >
@@ -119,7 +113,7 @@ const HeroSection = ({ scrollY = 0 }: HeroSectionProps) => {
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={revealed ? { opacity: 1, y: 0 } : { opacity: 0 }}
               transition={{ duration: 0.6, delay: 0.25 }}
               className="text-base sm:text-lg md:text-xl text-muted-foreground mb-4"
             >
@@ -128,7 +122,7 @@ const HeroSection = ({ scrollY = 0 }: HeroSectionProps) => {
 
             <motion.p
               initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={revealed ? { opacity: 1, y: 0 } : { opacity: 0 }}
               transition={{ duration: 0.6, delay: 0.35 }}
               className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-xl sm:max-w-2xl mx-auto mb-8"
             >
@@ -141,7 +135,7 @@ const HeroSection = ({ scrollY = 0 }: HeroSectionProps) => {
           {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={revealed ? { opacity: 1, y: 0 } : { opacity: 0 }}
             transition={{ duration: 0.65, delay: 0.45 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
           >
@@ -206,7 +200,7 @@ const HeroSection = ({ scrollY = 0 }: HeroSectionProps) => {
           {/* Social Links */}
           <motion.div
             initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={revealed ? { opacity: 1, y: 0 } : { opacity: 0 }}
             transition={{ duration: 0.55, delay: 0.55 }}
             className="flex items-center justify-center space-x-4 sm:space-x-6 mb-16"
           >

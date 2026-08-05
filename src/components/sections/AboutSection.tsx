@@ -16,7 +16,7 @@ const AboutSection = () => {
   ];
 
   return (
-    <section ref={sectionRef} id="about" data-scroll-section className="py-20 bg-accent/20 relative overflow-hidden">
+    <section ref={sectionRef} id="about" data-scroll-section className="py-20 bg-accent/20 backdrop-blur-[2px] relative overflow-hidden">
       {/* Background Decorative Icons */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-10 right-10 w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center animate-float">

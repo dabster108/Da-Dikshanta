@@ -90,7 +90,7 @@ const SkillsSection = () => {
   ];
 
   return (
-    <section ref={sectionRef} id="skills" data-scroll-section className="py-20 bg-background relative overflow-hidden">
+    <section ref={sectionRef} id="skills" data-scroll-section className="py-20 bg-background/40 backdrop-blur-[2px] relative overflow-hidden">
       {/* Background Decorative Icons */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-16 left-16 w-14 h-14 rounded-full bg-primary/8 flex items-center justify-center animate-float">

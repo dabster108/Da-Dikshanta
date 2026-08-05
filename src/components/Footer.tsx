@@ -9,7 +9,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-card border-t border-border">
+    <footer className="relative z-10 bg-card/70 backdrop-blur-md border-t border-border">
       <div className="container mx-auto px-6 py-12">
         <div className="flex flex-col items-center space-y-8">
           {/* Logo/Name */}

@@ -26,6 +26,8 @@ import {
 } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { usePerItemFadeOnScroll } from "@/hooks/use-scroll-animation";
+import ChargeablePanel from "@/components/effects/ChargeablePanel";
+import { PROJECT_ACTIVATIONS } from "@/data/projectActivations";
 
 const ProjectsSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -233,7 +235,7 @@ const ProjectsSection = () => {
       className="relative py-32 overflow-hidden"
     >
       {/* Premium Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background/80 to-accent/10" />
+      <div className="absolute inset-0 bg-gradient-to-br from-background/55 via-background/35 to-accent/10" />
 
       {/* Floating Gradient Blobs */}
       <div className="absolute inset-0 pointer-events-none">
@@ -333,7 +335,12 @@ const ProjectsSection = () => {
                       }}
                       className={`w-full md:w-[43%] pl-[76px] md:pl-0 ${isEven ? "md:pr-12 md:mr-auto" : "md:pl-12 md:ml-auto"}`}
                     >
-                      <div className="relative">
+                      <ChargeablePanel
+                        id={
+                          PROJECT_ACTIVATIONS[index]?.id ?? `project-${index}`
+                        }
+                        label={project.title}
+                      >
                         {/* Interactive Glow Behind Card */}
                         <div
                           className={`absolute -inset-1 bg-gradient-to-r ${isEven ? "from-primary/20 via-purple-500/10 to-transparent" : "from-transparent via-purple-500/10 to-primary/20"} rounded-[2rem] opacity-0 group-hover:opacity-100 transition-all duration-700 blur-2xl font-light`}
@@ -447,7 +454,7 @@ const ProjectsSection = () => {
                             </CardContent>
                           </div>
                         </Card>
-                      </div>
+                      </ChargeablePanel>
                     </div>
                   </motion.div>
                 );

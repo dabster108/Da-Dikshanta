@@ -6,65 +6,72 @@
 
 @layer base {
   :root {
-    /* Dark mode only - Modern color palette */
-    --background: 220 25% 5%;
-    --foreground: 220 15% 95%;
+    /* Cinematic dark palette — near-black background, charcoal surfaces.
+       Accents are electric and only appear when something is active. */
+    --background: 230 35% 3%;
+    --foreground: 220 14% 92%;
 
-    --card: 220 20% 8%;
-    --card-foreground: 220 15% 95%;
+    --card: 225 22% 6%;
+    --card-foreground: 220 14% 92%;
 
-    --popover: 220 20% 8%;
-    --popover-foreground: 220 15% 95%;
+    --popover: 225 22% 5%;
+    --popover-foreground: 220 14% 92%;
 
-    /* Primary: Modern blue-purple gradient */
-    --primary: 240 75% 65%;
-    --primary-foreground: 220 25% 5%;
-    --primary-glow: 250 80% 75%;
+    /* Primary: deep electric indigo — only when active */
+    --primary: 245 90% 68%;
+    --primary-foreground: 230 35% 3%;
+    --primary-glow: 250 95% 78%;
 
-    /* Secondary: Elegant gray tones */
-    --secondary: 220 20% 12%;
-    --secondary-foreground: 220 15% 90%;
+    /* Secondary: charcoal */
+    --secondary: 225 18% 9%;
+    --secondary-foreground: 220 14% 90%;
 
-    --muted: 220 20% 12%;
-    --muted-foreground: 220 12% 65%;
+    --muted: 225 20% 7%;
+    --muted-foreground: 220 10% 58%;
 
-    --accent: 220 20% 15%;
-    --accent-foreground: 220 15% 90%;
+    --accent: 225 22% 10%;
+    --accent-foreground: 220 14% 92%;
+
+    /* System accent colors — one per technical domain. Inert until activated. */
+    --sys-ai: 245 90% 68%;        /* indigo  — AI / neural */
+    --sys-robotics: 175 80% 55%;  /* cyan   — robotics / vision */
+    --sys-crypto: 35 95% 60%;     /* amber  — cryptography */
+    --sys-software: 200 80% 60%;  /* azure  — software / systems */
+    --sys-vr: 320 80% 65%;        /* magenta— spatial / VR */
 
     --destructive: 0 75% 55%;
-    --destructive-foreground: 220 15% 95%;
+    --destructive-foreground: 220 14% 95%;
 
-    --border: 220 20% 15%;
-    --input: 220 20% 15%;
-    --ring: 240 75% 65%;
+    --border: 225 18% 12%;
+    --input: 225 18% 12%;
+    --ring: 245 90% 68%;
 
     --radius: 0.75rem;
 
-    /* Custom design tokens - Dark mode */
-    --hero-gradient: linear-gradient(135deg, hsl(240, 75%, 65%), hsl(250, 80%, 75%));
-    --hero-gradient-hover: linear-gradient(135deg, hsl(240, 80%, 70%), hsl(250, 85%, 80%));
-    --card-shadow: 0 4px 20px -2px hsl(0 0% 0% / 0.3);
-    --card-shadow-hover: 0 8px 30px -4px hsl(0 0% 0% / 0.4);
-    --glow-shadow: 0 0 40px hsl(240 75% 65% / 0.4);
-    
+    /* Cinematic surfaces */
+    --hero-gradient: linear-gradient(135deg, hsl(245, 90%, 68%), hsl(250, 95%, 78%));
+    --hero-gradient-hover: linear-gradient(135deg, hsl(245, 90%, 72%), hsl(250, 95%, 82%));
+    --card-shadow: 0 8px 40px -8px hsl(0 0% 0% / 0.7);
+    --card-shadow-hover: 0 12px 60px -10px hsl(0 0% 0% / 0.85);
+    --glow-shadow: 0 0 48px hsl(245 90% 68% / 0.35);
+
     /* Typography */
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Inter', sans-serif;
-    
+
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 
-    --sidebar-background: 240 5.9% 10%;
+    --sidebar-background: 230 30% 4%;
     --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary: 245 90% 68%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 240 3.7% 15.9%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-border: 225 18% 12%;
+    --sidebar-ring: 245 90% 68%;
   }
-
 }
 
 @layer base {
@@ -263,7 +270,7 @@
   .noise-overlay {
     position: relative;
   }
-  
+
   .noise-overlay::before {
     content: '';
     position: absolute;
@@ -273,6 +280,119 @@
     bottom: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
     pointer-events: none;
+  }
+
+  /* ---- Cinematic atmosphere overlays ---- */
+
+  /* Global film grain — fixed, pointer-events-none, very subtle. */
+  .atmos-grain {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: grain-shift 0.6s steps(2) infinite;
+  }
+
+  /* Scanlines — barely-there horizontal lines, like a CRT control room. */
+  .atmos-scanlines {
+    position: fixed;
+    inset: 0;
+    z-index: 61;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 2px,
+      hsl(0 0% 100%) 2px,
+      hsl(0 0% 100%) 3px
+    );
+  }
+
+  /* Vignette — darkens the edges so the center reads as a lit stage. */
+  .atmos-vignette {
+    position: fixed;
+    inset: 0;
+    z-index: 59;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 40%,
+      hsl(230 35% 2% / 0.55) 100%
+    );
+  }
+
+  /* Depth fog — a faint cool haze at the bottom of the viewport. */
+  .atmos-fog {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 40vh;
+    z-index: 58;
+    pointer-events: none;
+    background: linear-gradient(
+      to top,
+      hsl(230 40% 4% / 0.7),
+      transparent
+    );
+  }
+
+  /* The full atmosphere stack — drop this once near the root. */
+  .atmosphere {
+    position: fixed;
+    inset: 0;
+    z-index: 58;
+    pointer-events: none;
+  }
+  .atmosphere::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at 50% 30%,
+      hsl(245 60% 12% / 0.35),
+      transparent 55%
+    );
+  }
+
+  /* Hide native cursor when a custom cursor is active. */
+  .cursor-none,
+  .cursor-none * {
+    cursor: none !important;
+  }
+
+  /* System-accent text/border helpers — inert until a .is-active ancestor sets them. */
+  .sys-accent {
+    color: hsl(var(--sys-current, 245 90% 68%));
+  }
+  .sys-border {
+    border-color: hsl(var(--sys-current, 245 90% 68%) / 0.5);
+  }
+  .sys-glow {
+    box-shadow: 0 0 24px hsl(var(--sys-current, 245 90% 68%) / 0.35);
+  }
+
+  /* Scanline sweep used by the boot sequence. */
+  .scan-sweep {
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      hsl(245 90% 68% / 0.18),
+      transparent
+    );
+    background-size: 100% 30%;
+    background-repeat: no-repeat;
+    animation: scan-sweep 1.6s linear infinite;
+  }
+
+  /* Text mask reveal — used by ScrambleText / section titles. */
+  .mask-reveal {
+    clip-path: inset(0 0 100% 0);
+    animation: mask-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
   
   /* Magnetic hover effect */
@@ -530,4 +650,34 @@
   100% {
     background-position: 0% center;
   }
+}
+
+@keyframes grain-shift {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-2%, 1%); }
+  50% { transform: translate(1%, -2%); }
+  75% { transform: translate(-1%, 2%); }
+  100% { transform: translate(2%, -1%); }
+}
+
+@keyframes scan-sweep {
+  0% { background-position: 0 -30%; }
+  100% { background-position: 0 130%; }
+}
+
+@keyframes mask-reveal {
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  48% { opacity: 1; }
+  50% { opacity: 0.6; }
+  52% { opacity: 1; }
+  70% { opacity: 0.85; }
+  72% { opacity: 1; }
+}
+
+.flicker {
+  animation: flicker 4s linear infinite;
 }
