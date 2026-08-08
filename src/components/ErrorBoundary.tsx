@@ -3,6 +3,9 @@ import { Component, type ErrorInfo, type ReactNode } from "react";
 interface Props {
   children: ReactNode;
   fallback?: ReactNode;
+  /** Notified when this subtree fails — lets the shell carry on without it
+   *  (e.g. releasing the boot screen when WebGL never comes up). */
+  onError?: (error: Error) => void;
 }
 
 interface State {
@@ -30,6 +33,7 @@ class ErrorBoundary extends Component<Props, State> {
     // Keep it on the console so the actual failure is recoverable from
     // DevTools even though the UI stays usable.
     console.error("[error-boundary] render crashed", error, info);
+    this.props.onError?.(error);
   }
 
   render() {
@@ -40,8 +44,8 @@ class ErrorBoundary extends Component<Props, State> {
           style={{
             position: "fixed",
             inset: 0,
-            background: "#0a0a0a",
-            color: "#e6e6e6",
+            background: "#0B0D0C",
+            color: "#F1F0E8",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -80,10 +84,10 @@ class ErrorBoundary extends Component<Props, State> {
             style={{
               marginTop: "1.5rem",
               padding: "0.6rem 1.2rem",
-              border: "1px solid #3d3f8f",
+              border: "1px solid rgba(200,255,77,0.4)",
               borderRadius: "0.5rem",
-              background: "#15151f",
-              color: "#b7a6ff",
+              background: "#171B18",
+              color: "#C8FF4D",
               cursor: "pointer",
             }}
           >

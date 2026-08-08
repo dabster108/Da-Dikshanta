@@ -1,100 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" class="dark">
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dikshanta Chapagain - Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#0B0D0C" />
+
+  <title>Dikshanta Chapagain — Intelligent Systems</title>
   <meta name="description"
-    content="AI/ML Enthusiast exploring the future of AI with modern portfolio showcasing innovative projects" />
+    content="AI engineer. Machine learning, computer vision and software systems — models taken past the notebook and into something a person can use." />
   <meta name="author" content="Dikshanta Chapagain" />
 
-  <!-- Force dark mode immediately - MUST be first to prevent FOUC -->
-  <script>
-    (function () {
-      try {
-        // Add dark class to html element immediately
-        document.documentElement.classList.add('dark');
-
-        // Set localStorage to override any theme provider defaults
-        localStorage.setItem('portfolio-theme', 'dark');
-
-        // Also set it as an attribute for additional safety
-        document.documentElement.setAttribute('data-theme', 'dark');
-      } catch (e) {
-        // Silent fail - fallback styles will handle it
-      }
-    })();
-  </script>
-
-  <!-- Inline fallback dark mode styles to prevent FOUC -->
+  <!-- Paint the ground before React mounts so there is never a white flash. -->
   <style>
-    html.dark,
-    html[data-theme="dark"] {
+    html {
+      background-color: #0B0D0C;
       color-scheme: dark;
     }
 
-    html.dark body,
-    html[data-theme="dark"] body {
-      background-color: #0a0a0a;
-      color: #ffffff;
-    }
-
-    html:not(.light) {
-      color-scheme: dark;
-    }
-
-    html:not(.light) body {
-      background-color: #0a0a0a;
-      color: #ffffff;
+    body {
+      margin: 0;
+      background-color: #0B0D0C;
+      color: #F1F0E8;
     }
   </style>
 
-  <!-- Favicon (all consistent) -->
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/frontend.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/frontend.png" />
-  <link rel="shortcut icon" href="/images/frontend.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
 
-  <!-- Tailwind CSS - Vite will handle the correct path in dev/prod -->
-  <link rel="stylesheet" href="/src/index.css" />
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="Dikshanta Chapagain - Portfolio" />
-  <meta property="og:description" content="My personal portfolio showcasing projects, skills, and experience." />
+  <meta property="og:title" content="Dikshanta Chapagain — Intelligent Systems" />
+  <meta property="og:description"
+    content="AI engineer. Machine learning, computer vision and software systems." />
   <meta property="og:image" content="/images/banner.png" />
-  <meta property="og:url" content="https://da-dikshanta.vercel.app/" />
+  <meta property="og:url" content="https://chapagaindikshanta.com.np" />
   <meta property="og:type" content="website" />
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Dikshanta Chapagain - Portfolio" />
-  <meta name="twitter:description" content="My personal portfolio showcasing projects, skills, and experience." />
+  <meta name="twitter:title" content="Dikshanta Chapagain — Intelligent Systems" />
+  <meta name="twitter:description"
+    content="AI engineer. Machine learning, computer vision and software systems." />
   <meta name="twitter:image" content="/images/banner.png" />
-
-  <!-- Remove Vercel preview banner -->
-  <script>
-    if (typeof window !== "undefined") {
-      const observer = new MutationObserver(() => {
-        const banner = document.getElementById("__vercel");
-        if (banner) banner.remove();
-      });
-
-      observer.observe(document.body, { childList: true, subtree: true });
-    }
-  </script>
 </head>
 
 <body>
   <div id="root"></div>
-
-  <!-- React entry point -->
   <script type="module" src="/src/main.tsx"></script>
 </body>
 
