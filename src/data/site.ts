@@ -10,7 +10,7 @@ export const PROFILE = {
   thesis: "I design, build, research and deploy intelligent software.",
   portrait: "/images/me.jpeg",
   portraitAlt: "Portrait of Dikshanta Chapagain",
-  location: "Budhanilkantha, Kathmandu",
+  location: "Gyaneshwor, Kathmandu",
   institution: "Softwarica College of IT and E-Commerce",
   degree: "BSc (Hons) Computing with Artificial Intelligence",
   graduation: "2026",
